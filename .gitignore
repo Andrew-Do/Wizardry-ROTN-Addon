@@ -32,3 +32,6 @@ gradle.build.forge
 gradle.build.ori
 
 /eclipse
+
+logs
+libs2
