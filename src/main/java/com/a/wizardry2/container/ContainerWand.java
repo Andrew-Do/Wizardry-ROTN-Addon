@@ -2,11 +2,13 @@ package com.a.wizardry2.container;
 
 import com.a.wizardry2.capability.IWand;
 import electroblob.wizardry.Wizardry;
+import electroblob.wizardry.inventory.VirtualSlot;
 import electroblob.wizardry.item.IWorkbenchItem;
 import electroblob.wizardry.item.ItemSpellBook;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.util.WandHelper;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -40,7 +42,6 @@ public class ContainerWand extends Container {
 
         IItemHandler itemHandler = (IItemHandler) wand.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
         for(int i = 0; i < 8; i++){
-            //TODO: missing properties ItemSpellBook.class allowed only
             //TODO: Spellbook max stack size
             this.addSlotToContainer(new SlotWandItem(this, itemHandler, i, -999, -999, 1, ItemSpellBook.class));
         }
@@ -95,9 +96,6 @@ public class ContainerWand extends Container {
         }
     }
 
-    //TODO
-    //public ItemStack transferStackInSlot(EntityPlayer player, int clickedSlotId){
-
     //TODO: Magic missile pierces enemies
     //TODO: look at ice shard code, and make fireball arc and aoe, fireball also needs to pass through tallgrass, look at magic missile code
 
@@ -116,14 +114,16 @@ public class ContainerWand extends Container {
         int centreX = 80;
         int centreY = 64;
 
-        for(int i = 0; i < spellSlots; i++){
+        for(int i = 0; i < spellSlots; i++)
+        {
             int x = centreX + getBookSlotXOffset(i, spellSlots);
             int y = centreY + getBookSlotYOffset(i, spellSlots);
             showSlot(i, x, y);
         }
 
         // Hide the rest
-        for(int i = spellSlots; i < CRYSTAL_SLOT; i++){
+        for(int i = spellSlots; i < UPGRADE_SLOT; i++)
+        {
             hideSlot(i, player);
         }
 
@@ -136,7 +136,8 @@ public class ContainerWand extends Container {
      * @param x The x position to put the slot in.
      * @param y The y position to put the slot in.
      */
-    private void showSlot(int index, int x, int y){
+    private void showSlot(int index, int x, int y)
+    {
         Slot slot = this.getSlot(index);
         slot.xPos = x;
         slot.yPos = y;
@@ -149,7 +150,8 @@ public class ContainerWand extends Container {
      * @param index The index of the slot to hide.
      * @param player The player that is using this container.
      */
-    private void hideSlot(int index, EntityPlayer player){
+    private void hideSlot(int index, EntityPlayer player)
+    {
 
         Slot slot = this.getSlot(index);
 
@@ -162,7 +164,8 @@ public class ContainerWand extends Container {
         // exactly the same as shift-clicking the slot, so why re-invent the wheel?
         ItemStack remainder = this.transferStackInSlot(player, index);
 
-        if(remainder == ItemStack.EMPTY && stack != ItemStack.EMPTY){
+        if(remainder == ItemStack.EMPTY && stack != ItemStack.EMPTY)
+        {
             slot.putStack(ItemStack.EMPTY);
             // The second parameter is never used...
             if(player != null) player.dropItem(stack, false);
@@ -171,16 +174,54 @@ public class ContainerWand extends Container {
 
     /** Returns the x offset (relative to the central slot) of the ith book slot when the total number of book slots is
      * equal to {@code bookSlotCount}. */
-    public static int getBookSlotXOffset(int i, int bookSlotCount){
+    public static int getBookSlotXOffset(int i, int bookSlotCount)
+    {
         float angle = i * (2 * (float)Math.PI) / bookSlotCount;
         return Math.round(SLOT_RADIUS * MathHelper.sin(angle));
     }
 
     /** Returns the y offset (relative to the central slot) of the ith book slot when the total number of book slots is
      * equal to {@code bookSlotCount}. */
-    public static int getBookSlotYOffset(int i, int bookSlotCount){
+    public static int getBookSlotYOffset(int i, int bookSlotCount)
+    {
         float angle = i * (2 * (float)Math.PI) / bookSlotCount;
         return Math.round(SLOT_RADIUS * -MathHelper.cos(angle)); // -cos because +y is downwards
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer player, int clickedSlotId)
+    {
+        ItemStack remainder = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(clickedSlotId);
+
+        if(slot != null && slot.getHasStack()){
+
+            ItemStack stack = slot.getStack(); // The stack that was there originally
+            remainder = stack.copy(); // A copy of that stack
+
+            //TODO: Carefully check start and end index
+            //Wand -> inventory, spellbooks
+            if(clickedSlotId <= UPGRADE_SLOT
+                    && !this.mergeItemStack(stack, UPGRADE_SLOT, UPGRADE_SLOT + PLAYER_INVENTORY_SIZE, true))
+                return ItemStack.EMPTY;
+            // Inventory -> wand
+            else
+            {
+                int[] slotRange = findSlotRangeForItem(stack);
+
+                // Try to move the stack into the workbench. If this fails...
+                if(slotRange == null || !this.mergeItemStack(stack, slotRange[0], slotRange[1] + 1, false))
+                    return ItemStack.EMPTY;
+            }
+
+            if(stack.getCount() == 0) slot.putStack(ItemStack.EMPTY);
+            else slot.onSlotChanged();
+
+            if(stack.getCount() == remainder.getCount()) return ItemStack.EMPTY;
+            slot.onTake(player, stack);
+        }
+
+        return remainder;
     }
 
     /**
@@ -191,39 +232,21 @@ public class ContainerWand extends Container {
      * @return A 2-element int array of the minimum and maximum slot IDs respectively
      */
     @Nullable
-    private int[] findSlotRangeForItem(ItemStack stack){
+    private int[] findSlotRangeForItem(ItemStack stack)
+    {
 
-        if(this.getSlot(0).isItemValid(stack)){ // Spell books
-
-            ItemStack centreStack = getSlot(CENTRE_SLOT).getStack();
-
-            if(centreStack.getItem() instanceof IWorkbenchItem){
-                // Restrict the range to visible slots
-                // (How did I not think of this before? Why did I go to the trouble of overriding mergeItemStack? And
-                // how did that fix ever work in the first place?!)
-                int spellSlots = ((IWorkbenchItem)centreStack.getItem()).getSpellSlotCount(centreStack);
-                if(spellSlots > 0){
-                    return new int[]{0, spellSlots - 1};
-                }
-            }
-
-        }else if(getSlot(CRYSTAL_SLOT).isItemValid(stack)){
-            return new int[]{CRYSTAL_SLOT, CRYSTAL_SLOT};
-
-        }else if(getSlot(CENTRE_SLOT).isItemValid(stack)){
-            return new int[]{CENTRE_SLOT, CENTRE_SLOT};
-
-        }else if(getSlot(UPGRADE_SLOT).isItemValid(stack)){
-            return new int[]{UPGRADE_SLOT, UPGRADE_SLOT};
+        if(this.getSlot(0).isItemValid(stack)) // Spell books
+        {
+            int spellSlots = ((IWorkbenchItem) wand.getItem()).getSpellSlotCount(wand);
+            if(spellSlots > 0) return new int[]{0, spellSlots - 1};
         }
+        else if(getSlot(UPGRADE_SLOT).isItemValid(stack)) return new int[]{UPGRADE_SLOT, UPGRADE_SLOT};
 
         return null; // It won't fit!
     }
 
     public static final ResourceLocation EMPTY_SLOT_UPGRADE = new ResourceLocation(Wizardry.MODID, "gui/container/empty_slot_upgrade");
-    public static final int CRYSTAL_SLOT = 8;
-    public static final int CENTRE_SLOT = 9;
-    public static final int UPGRADE_SLOT = 10;
-
+    public static final int UPGRADE_SLOT = 8;
+    public static final int PLAYER_INVENTORY_SIZE = 36;
     public static final int SLOT_RADIUS = 42;
 }

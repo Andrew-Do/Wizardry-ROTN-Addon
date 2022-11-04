@@ -38,6 +38,6 @@ public class WandProvider implements ICapabilitySerializable<NBTTagCompound> {
     //fields
     protected ItemStack stack;
     protected final ItemStackHandler handler;
-    final int MAX_SIZE = 11;
+    final int MAX_SIZE = 9; //wand 0-7 + upgrade slot 8, 0-8 is 9 slots
 
 }
