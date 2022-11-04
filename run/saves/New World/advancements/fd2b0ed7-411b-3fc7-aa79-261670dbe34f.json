@@ -1,0 +1,20 @@
+{
+  "ebwizardry:arcane_initiate": {
+    "criteria": {
+      "criteria_0": "2022-11-03 21:45:30 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:handbook/spells": {
+    "criteria": {
+      "criteria_0": "2022-11-03 21:45:41 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "beaches": "2022-11-03 21:45:30 -0700"
+    },
+    "done": false
+  }
+}

@@ -1,0 +1,128 @@
+---- Minecraft Crash Report ----
+// Hi. I'm Minecraft, and I'm a crashaholic.
+
+Time: 10/31/22 10:57 AM
+Description: Unexpected error
+
+java.lang.ClassCastException: electroblob.wizardry.client.gui.GuiSpellDisplay$Skin cannot be cast to com.a.wizardry2.mixin.wizardry.IMixinGuiSpellDisplay
+	at electroblob.wizardry.client.gui.GuiSpellDisplay$Skin.drawText(GuiSpellDisplay.java:764)
+	at electroblob.wizardry.client.gui.GuiSpellDisplay.renderSpellHUD(GuiSpellDisplay.java:274)
+	at electroblob.wizardry.client.gui.GuiSpellDisplay.draw(GuiSpellDisplay.java:159)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_70_GuiSpellDisplay_draw_Post.invoke(.dynamic)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
+	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)
+	at net.minecraftforge.client.GuiIngameForge.post(GuiIngameForge.java:911)
+	at net.minecraftforge.client.GuiIngameForge.renderHUDText(GuiIngameForge.java:741)
+	at net.minecraftforge.client.GuiIngameForge.renderGameOverlay(GuiIngameForge.java:173)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1098)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1119)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:398)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.legacydev.Main.start(Main.java:86)
+	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at electroblob.wizardry.client.gui.GuiSpellDisplay$Skin.drawText(GuiSpellDisplay.java:764)
+	at electroblob.wizardry.client.gui.GuiSpellDisplay.renderSpellHUD(GuiSpellDisplay.java:274)
+	at electroblob.wizardry.client.gui.GuiSpellDisplay.draw(GuiSpellDisplay.java:159)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_70_GuiSpellDisplay_draw_Post.invoke(.dynamic)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
+	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)
+	at net.minecraftforge.client.GuiIngameForge.post(GuiIngameForge.java:911)
+	at net.minecraftforge.client.GuiIngameForge.renderHUDText(GuiIngameForge.java:741)
+	at net.minecraftforge.client.GuiIngameForge.renderGameOverlay(GuiIngameForge.java:173)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player796'/308, l='MpServer', x=51.95, y=64.00, z=581.73]]
+	Chunk stats: MultiplayerChunkCache: 441, 441
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (56,64,582), Chunk: (at 8,4,6 in 3,36; contains blocks 48,0,576 to 63,255,591), Region: (0,1; contains chunks 0,32 to 31,63, blocks 0,0,512 to 511,255,1023)
+	Level time: 2122274 game time, 773314 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 87 total; [EntityPlayerSP['Player796'/308, l='MpServer', x=51.95, y=64.00, z=581.73], EntitySkeleton['Skeleton'/16, l='MpServer', x=-18.71, y=15.00, z=538.50], EntityCreeper['Creeper'/18, l='MpServer', x=-25.50, y=14.00, z=573.50], EntityCreeper['Creeper'/19, l='MpServer', x=-24.50, y=14.00, z=572.50], EntityCreeper['Creeper'/21, l='MpServer', x=-16.50, y=23.00, z=563.50], EntityZombie['Zombie'/34, l='MpServer', x=-6.50, y=26.00, z=523.50], EntitySquid['Squid'/36, l='MpServer', x=-7.58, y=49.68, z=525.89], EntityZombie['Zombie'/37, l='MpServer', x=-10.93, y=16.00, z=540.52], EntitySquid['Squid'/39, l='MpServer', x=-6.24, y=59.68, z=554.20], EntityCreeper['Creeper'/40, l='MpServer', x=-0.50, y=14.00, z=572.50], EntityZombie['Zombie'/41, l='MpServer', x=-2.74, y=16.00, z=564.53], EntitySquid['Squid'/43, l='MpServer', x=-10.69, y=61.82, z=558.97], EntitySpider['Spider'/45, l='MpServer', x=-13.50, y=26.00, z=589.50], EntitySpider['Spider'/46, l='MpServer', x=-11.50, y=26.00, z=589.50], EntitySquid['Squid'/48, l='MpServer', x=-8.81, y=54.22, z=579.53], EntitySquid['Squid'/50, l='MpServer', x=-9.86, y=54.59, z=576.79], EntitySkeleton['Skeleton'/51, l='MpServer', x=-2.49, y=18.00, z=594.74], EntitySquid['Squid'/52, l='MpServer', x=-9.04, y=46.98, z=603.36], EntityBat['Bat'/309, l='MpServer', x=88.17, y=25.00, z=551.79], EntitySquid['Squid'/54, l='MpServer', x=-6.44, y=48.78, z=598.59], EntityBat['Bat'/310, l='MpServer', x=-24.51, y=13.03, z=575.64], EntityBat['Bat'/311, l='MpServer', x=-20.40, y=13.13, z=578.44], EntitySquid['Squid'/56, l='MpServer', x=-11.26, y=56.71, z=593.38], EntityBat['Bat'/57, l='MpServer', x=-0.26, y=18.00, z=632.72], EntitySquid['Squid'/58, l='MpServer', x=-11.70, y=54.81, z=637.16], EntitySquid['Squid'/59, l='MpServer', x=-10.99, y=54.22, z=623.51], EntitySquid['Squid'/65, l='MpServer', x=1.52, y=48.43, z=518.80], EntitySquid['Squid'/66, l='MpServer', x=3.48, y=51.15, z=532.71], EntitySkeleton['Skeleton'/67, l='MpServer', x=8.25, y=14.00, z=570.58], EntityZombie['Zombie'/323, l='MpServer', x=114.29, y=19.00, z=643.19], EntitySkeleton['Skeleton'/68, l='MpServer', x=10.50, y=14.00, z=569.69], EntityCreeper['Creeper'/324, l='MpServer', x=114.50, y=19.00, z=641.50], EntityCreeper['Creeper'/69, l='MpServer', x=8.50, y=14.00, z=571.50], EntityCreeper['Creeper'/325, l='MpServer', x=113.50, y=19.00, z=638.50], EntityZombie['Zombie'/70, l='MpServer', x=2.78, y=15.00, z=569.50], EntityZombie['Zombie'/71, l='MpServer', x=5.50, y=25.00, z=574.50], EntityBat['Bat'/72, l='MpServer', x=5.78, y=26.00, z=557.16], EntitySquid['Squid'/73, l='MpServer', x=10.03, y=57.39, z=591.61], EntitySquid['Squid'/75, l='MpServer', x=15.06, y=56.20, z=601.39], EntityBat['Bat'/77, l='MpServer', x=-7.50, y=16.58, z=633.73], EntityBat['Bat'/79, l='MpServer', x=6.82, y=17.07, z=642.64], EntitySkeleton['Skeleton'/340, l='MpServer', x=127.50, y=39.00, z=652.50], EntitySquid['Squid'/89, l='MpServer', x=27.13, y=53.66, z=522.04], EntitySquid['Squid'/90, l='MpServer', x=21.61, y=57.00, z=593.12], EntityZombie['Zombie'/91, l='MpServer', x=19.50, y=25.00, z=611.50], EntitySquid['Squid'/92, l='MpServer', x=25.16, y=59.22, z=617.37], EntitySquid['Squid'/93, l='MpServer', x=27.14, y=59.87, z=629.36], EntitySquid['Squid'/94, l='MpServer', x=33.43, y=59.05, z=622.17], EntitySquid['Squid'/107, l='MpServer', x=51.09, y=48.84, z=523.75], EntitySquid['Squid'/108, l='MpServer', x=37.53, y=55.00, z=533.93], EntitySquid['Squid'/110, l='MpServer', x=43.27, y=54.54, z=534.80], EntityZombie['Zombie'/111, l='MpServer', x=32.50, y=27.00, z=548.50], EntitySquid['Squid'/112, l='MpServer', x=32.79, y=61.86, z=615.50], EntityCreeper['Creeper'/130, l='MpServer', x=63.42, y=64.00, z=551.86], EntityCreeper['Creeper'/147, l='MpServer', x=67.20, y=25.00, z=527.52], EntityCreeper['Creeper'/148, l='MpServer', x=72.50, y=24.00, z=513.50], EntityCreeper['Creeper'/150, l='MpServer', x=65.50, y=25.00, z=529.50], EntityCreeper['Creeper'/151, l='MpServer', x=65.50, y=25.00, z=528.50], EntityCreeper['Creeper'/152, l='MpServer', x=72.36, y=64.00, z=570.15], EntityCow['Cow'/153, l='MpServer', x=77.86, y=64.00, z=578.73], EntitySquid['Squid'/154, l='MpServer', x=78.83, y=60.80, z=623.40], EntitySquid['Squid'/155, l='MpServer', x=80.86, y=62.31, z=627.93], EntitySquid['Squid'/156, l='MpServer', x=71.43, y=58.86, z=622.84], EntitySkeleton['Skeleton'/169, l='MpServer', x=84.56, y=59.00, z=573.25], EntitySquid['Squid'/170, l='MpServer', x=90.04, y=58.76, z=591.05], EntityCreeper['Creeper'/171, l='MpServer', x=95.50, y=15.00, z=655.50], EntitySquid['Squid'/187, l='MpServer', x=109.29, y=46.95, z=555.99], EntitySquid['Squid'/188, l='MpServer', x=97.92, y=53.47, z=591.86], EntitySquid['Squid'/189, l='MpServer', x=110.46, y=61.92, z=604.20], EntitySquid['Squid'/190, l='MpServer', x=103.14, y=58.23, z=591.69], EntitySquid['Squid'/191, l='MpServer', x=110.52, y=61.48, z=603.36], EntitySquid['Squid'/193, l='MpServer', x=100.46, y=55.46, z=590.77], EntitySquid['Squid'/194, l='MpServer', x=99.06, y=60.67, z=613.96], EntityZombie['Zombie'/195, l='MpServer', x=100.81, y=32.00, z=649.44], EntityZombie['Zombie'/212, l='MpServer', x=130.57, y=25.00, z=518.77], EntitySquid['Squid'/216, l='MpServer', x=109.33, y=44.58, z=547.35], EntitySquid['Squid'/218, l='MpServer', x=115.20, y=56.47, z=556.46], EntitySquid['Squid'/220, l='MpServer', x=115.15, y=58.24, z=564.12], EntitySquid['Squid'/221, l='MpServer', x=114.17, y=54.86, z=570.43], EntityCreeper['Creeper'/229, l='MpServer', x=116.83, y=16.00, z=614.50], EntitySkeleton['Skeleton'/230, l='MpServer', x=117.63, y=15.00, z=611.73], EntitySkeleton['Skeleton'/231, l='MpServer', x=113.70, y=16.00, z=622.70], EntityZombie['Zombie'/236, l='MpServer', x=129.68, y=14.00, z=633.63], EntityBat['Bat'/237, l='MpServer', x=113.59, y=19.76, z=633.39], EntitySkeleton['Skeleton'/238, l='MpServer', x=116.50, y=18.00, z=650.50], EntityChicken['Chicken'/239, l='MpServer', x=124.37, y=64.00, z=643.86], EntityZombie['Zombie'/255, l='MpServer', x=128.18, y=42.00, z=632.48]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:420)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2741)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:427)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.legacydev.Main.start(Main.java:86)
+	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_352, Amazon.com Inc.
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Amazon.com Inc.
+	Memory: 697020480 bytes (664 MB) / 1569718272 bytes (1497 MB) up to 3808428032 bytes (3632 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2860 9 mods loaded, 9 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID                | Version       | Source                                                             | Signature |
+	|:------ |:----------------- |:------------- |:------------------------------------------------------------------ |:--------- |
+	| LCHIJA | minecraft         | 1.12.2        | minecraft.jar                                                      | None      |
+	| LCHIJA | mcp               | 9.42          | minecraft.jar                                                      | None      |
+	| LCHIJA | FML               | 8.0.99.99     | forge-1.12.2-14.23.5.2860_mapped_snapshot_20171003-1.12-recomp.jar | None      |
+	| LCHIJA | forge             | 14.23.5.2860  | forge-1.12.2-14.23.5.2860_mapped_snapshot_20171003-1.12-recomp.jar | None      |
+	| LCHIJA | ebwizardry        | 4.3.7         | ElectroblobsWizardry-4.3.8.jar                                     | None      |
+	| LCHIJA | wizardry2         | 1.0           | main                                                               | None      |
+	| LCHIJA | silentlib         | 3.0.13        | SilentLib-1.12.2-3.0.14+168.jar                                    | None      |
+	| LCHIJA | scalinghealth     | 1.3.37        | ScalingHealth-1.12.2-1.3.42+147.jar                                | None      |
+	| LCHIJA | ancientspellcraft | 1.12.2-v1.5.4 | AncientSpellcraft-1.12.2-v1.5.4.jar                                | None      |
+
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 516.94' Renderer: 'NVIDIA GeForce GTX 1660/PCIe/SSE2'
+	Launched Version: ${MC_VERSION}
+	LWJGL: 2.9.4
+	OpenGL: NVIDIA GeForce GTX 1660/PCIe/SSE2 GL version 4.6.0 NVIDIA 516.94, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 3600X 6-Core Processor 

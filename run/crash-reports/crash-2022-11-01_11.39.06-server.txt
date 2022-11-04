@@ -1,0 +1,99 @@
+---- Minecraft Crash Report ----
+// I let you down. Sorry :(
+
+Time: 11/1/22 11:39 AM
+Description: Loading entity NBT
+
+java.lang.ClassCastException: net.minecraft.nbt.NBTTagInt cannot be cast to net.minecraft.nbt.NBTTagIntArray
+	at com.a.wizardry2.capability.ManaStorage.readNBT(ManaStorage.java:22)
+	at com.a.wizardry2.capability.ManaStorage.readNBT(ManaStorage.java:12)
+	at com.a.wizardry2.capability.ManaProvider.deserializeNBT(ManaProvider.java:36)
+	at net.minecraftforge.common.capabilities.CapabilityDispatcher.deserializeNBT(CapabilityDispatcher.java:135)
+	at net.minecraft.entity.Entity.readFromNBT(Entity.java:1852)
+	at net.minecraft.server.management.PlayerList.readPlayerDataFromFile(PlayerList.java:318)
+	at net.minecraft.server.management.PlayerList.initializeConnectionToPlayer(PlayerList.java:116)
+	at net.minecraftforge.fml.common.network.handshake.NetworkDispatcher.completeServerSideConnection(NetworkDispatcher.java:255)
+	at net.minecraftforge.fml.common.network.handshake.NetworkDispatcher.access$100(NetworkDispatcher.java:72)
+	at net.minecraftforge.fml.common.network.handshake.NetworkDispatcher$1.update(NetworkDispatcher.java:205)
+	at net.minecraft.network.NetworkManager.processReceivedPackets(NetworkManager.java:285)
+	at net.minecraft.network.NetworkSystem.networkTick(NetworkSystem.java:180)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:790)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:668)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:185)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:526)
+	at java.lang.Thread.run(Thread.java:750)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at com.a.wizardry2.capability.ManaStorage.readNBT(ManaStorage.java:22)
+	at com.a.wizardry2.capability.ManaStorage.readNBT(ManaStorage.java:12)
+	at com.a.wizardry2.capability.ManaProvider.deserializeNBT(ManaProvider.java:36)
+	at net.minecraftforge.common.capabilities.CapabilityDispatcher.deserializeNBT(CapabilityDispatcher.java:135)
+
+-- Entity being loaded --
+Details:
+	Entity Type: null (net.minecraft.entity.player.EntityPlayerMP)
+	Entity ID: 114
+	Entity Name: Player625
+	Entity's Exact location: 19.17, 66.00, 297.78
+	Entity's Block location: World: (19,66,297), Chunk: (at 3,4,9 in 1,18; contains blocks 16,0,288 to 31,255,303), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Passengers: []
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.entity.Entity.readFromNBT(Entity.java:1852)
+	at net.minecraft.server.management.PlayerList.readPlayerDataFromFile(PlayerList.java:318)
+	at net.minecraft.server.management.PlayerList.initializeConnectionToPlayer(PlayerList.java:116)
+	at net.minecraftforge.fml.common.network.handshake.NetworkDispatcher.completeServerSideConnection(NetworkDispatcher.java:255)
+	at net.minecraftforge.fml.common.network.handshake.NetworkDispatcher.access$100(NetworkDispatcher.java:72)
+	at net.minecraftforge.fml.common.network.handshake.NetworkDispatcher$1.update(NetworkDispatcher.java:205)
+	at net.minecraft.network.NetworkManager.processReceivedPackets(NetworkManager.java:285)
+
+-- Ticking connection --
+Details:
+	Connection: net.minecraft.network.NetworkManager@25979d7f
+Stacktrace:
+	at net.minecraft.network.NetworkSystem.networkTick(NetworkSystem.java:180)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:790)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:668)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:185)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:526)
+	at java.lang.Thread.run(Thread.java:750)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_352, Amazon.com Inc.
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Amazon.com Inc.
+	Memory: 404136296 bytes (385 MB) / 1412431872 bytes (1347 MB) up to 3808428032 bytes (3632 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 12, tallocated: 94
+	FML: MCP 9.42 Powered by Forge 14.23.5.2860 11 mods loaded, 11 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID                | Version       | Source                                                             | Signature |
+	|:------ |:----------------- |:------------- |:------------------------------------------------------------------ |:--------- |
+	| LCHIJA | minecraft         | 1.12.2        | minecraft.jar                                                      | None      |
+	| LCHIJA | mcp               | 9.42          | minecraft.jar                                                      | None      |
+	| LCHIJA | FML               | 8.0.99.99     | forge-1.12.2-14.23.5.2860_mapped_snapshot_20171003-1.12-recomp.jar | None      |
+	| LCHIJA | forge             | 14.23.5.2860  | forge-1.12.2-14.23.5.2860_mapped_snapshot_20171003-1.12-recomp.jar | None      |
+	| LCHIJA | ebwizardry        | 4.3.7         | ElectroblobsWizardry-4.3.8.jar                                     | None      |
+	| LCHIJA | wizardry2         | 1.0           | main                                                               | None      |
+	| LCHIJA | betterhud         | 1.4.4         | betterhud-1.12.2-1.4.4 (1).jar                                     | None      |
+	| LCHIJA | classicbar        | @VERSION@     | classicbar-0.5.4.jar                                               | None      |
+	| LCHIJA | silentlib         | 3.0.13        | SilentLib-1.12.2-3.0.14+168.jar                                    | None      |
+	| LCHIJA | scalinghealth     | 1.3.37        | ScalingHealth-1.12.2-1.3.42+147.jar                                | None      |
+	| LCHIJA | ancientspellcraft | 1.12.2-v1.5.4 | AncientSpellcraft-1.12.2-v1.5.4.jar                                | None      |
+
+	Loaded coremods (and transformers): 
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 8; []
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

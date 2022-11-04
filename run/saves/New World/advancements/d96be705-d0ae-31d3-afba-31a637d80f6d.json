@@ -1,0 +1,40 @@
+{
+  "ebwizardry:master": {
+    "criteria": {
+      "sorcery": "2022-11-03 14:52:23 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:discover_master_spell": {
+    "criteria": {
+      "criteria_0": "2022-11-03 14:55:10 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:all_spells": {
+    "criteria": {
+      "fire_breath": "2022-11-03 14:55:10 -0700",
+      "magic_missile": "2022-11-03 14:53:47 -0700"
+    },
+    "done": false
+  },
+  "ebwizardry:discover_spell": {
+    "criteria": {
+      "criteria_0": "2022-11-03 14:53:47 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:handbook/spells": {
+    "criteria": {
+      "criteria_0": "2022-11-03 14:53:21 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "forest": "2022-11-03 14:52:50 -0700",
+      "forest_hills": "2022-11-03 14:51:53 -0700"
+    },
+    "done": false
+  }
+}

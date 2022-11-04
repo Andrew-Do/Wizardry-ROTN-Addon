@@ -1,0 +1,99 @@
+{
+  "ebwizardry:arcane_initiate": {
+    "criteria": {
+      "criteria_0": "2022-11-03 21:54:48 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/dark_oak_boat": {
+    "criteria": {
+      "entered_water": "2022-11-03 21:55:39 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:wizard_tower": {
+    "criteria": {
+      "criteria_0": "2022-11-03 18:34:01 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "entered_water": "2022-11-03 21:55:39 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/cake": {
+    "criteria": {
+      "has_egg": "2022-11-03 18:33:51 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:handbook/spells": {
+    "criteria": {
+      "criteria_0": "2022-11-03 18:32:57 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:master": {
+    "criteria": {
+      "sorcery": "2022-11-03 18:32:57 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/acacia_boat": {
+    "criteria": {
+      "entered_water": "2022-11-03 21:55:39 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:all_spells": {
+    "criteria": {
+      "magic_missile": "2022-11-03 21:55:45 -0700"
+    },
+    "done": false
+  },
+  "ebwizardry:discover_spell": {
+    "criteria": {
+      "criteria_0": "2022-11-03 21:55:45 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_something": "2022-11-03 21:57:28 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/boat": {
+    "criteria": {
+      "entered_water": "2022-11-03 21:55:39 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/jungle_boat": {
+    "criteria": {
+      "entered_water": "2022-11-03 21:55:39 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/spruce_boat": {
+    "criteria": {
+      "entered_water": "2022-11-03 21:55:39 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "forest": "2022-11-03 18:33:59 -0700",
+      "swampland": "2022-11-03 21:55:42 -0700",
+      "beaches": "2022-11-03 21:54:48 -0700",
+      "forest_hills": "2022-11-03 18:34:41 -0700",
+      "plains": "2022-11-03 18:32:57 -0700",
+      "extreme_hills": "2022-11-03 21:56:02 -0700",
+      "roofed_forest": "2022-11-03 21:55:06 -0700",
+      "river": "2022-11-03 21:55:39 -0700"
+    },
+    "done": false
+  }
+}

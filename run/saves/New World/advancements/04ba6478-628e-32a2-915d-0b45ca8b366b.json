@@ -1,0 +1,21 @@
+{
+  "ebwizardry:master": {
+    "criteria": {
+      "sorcery": "2022-11-03 18:12:03 -0700"
+    },
+    "done": true
+  },
+  "ebwizardry:handbook/spells": {
+    "criteria": {
+      "criteria_0": "2022-11-03 18:12:03 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "forest": "2022-11-03 18:12:20 -0700",
+      "plains": "2022-11-03 18:12:03 -0700"
+    },
+    "done": false
+  }
+}
