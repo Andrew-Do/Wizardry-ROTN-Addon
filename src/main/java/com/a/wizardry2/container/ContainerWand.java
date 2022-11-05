@@ -42,7 +42,6 @@ public class ContainerWand extends Container {
 
         IItemHandler itemHandler = (IItemHandler) wand.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
         for(int i = 0; i < 8; i++){
-            //TODO: Spellbook max stack size
             this.addSlotToContainer(new SlotWandItem(this, itemHandler, i, -999, -999, 1, ItemSpellBook.class));
         }
 
@@ -98,6 +97,7 @@ public class ContainerWand extends Container {
 
     //TODO: Magic missile pierces enemies
     //TODO: look at ice shard code, and make fireball arc and aoe, fireball also needs to pass through tallgrass, look at magic missile code
+    //TODO: ray spells slow whatever they are hitting
 
 
     @Override
@@ -199,7 +199,6 @@ public class ContainerWand extends Container {
             ItemStack stack = slot.getStack(); // The stack that was there originally
             remainder = stack.copy(); // A copy of that stack
 
-            //TODO: Carefully check start and end index
             //Wand -> inventory, spellbooks
             if(clickedSlotId <= UPGRADE_SLOT
                     && !this.mergeItemStack(stack, UPGRADE_SLOT, UPGRADE_SLOT + PLAYER_INVENTORY_SIZE, true))

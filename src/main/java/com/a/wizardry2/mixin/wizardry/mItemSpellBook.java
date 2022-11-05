@@ -17,6 +17,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,21 +25,46 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
 @Mixin(ItemSpellBook.class)
 public abstract class mItemSpellBook extends Item {
 
+    @Inject(at = @At("TAIL"), method = "<init>()V")
+    private void init(CallbackInfo info){
+        setMaxStackSize(1);
+    }
+
+
+
     @Overwrite(remap = false)
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand){
         return ActionResult.newResult(EnumActionResult.PASS, player.getHeldItem(hand));
     }
 
+    //TODO: Phase 2 after curation? Maybe
+    //TODO: generate tooltip display
+    //TODO: if no properties are generated, right click to generate and drop book
+    //TODO: Color tiers based on
+    //TODO: generate nbt based on spell properties and attach to book
+    //TODO: craft books together to combine the best properties
+
+    //Helper
+
+    @Override
+    public String getItemStackDisplayName(ItemStack stack)
+    {
+        Spell spell = Spell.byMetadata(stack.getItemDamage());
+        return "\u00A77" + spell.getDisplayNameWithFormatting();
+    }
+
     // This is accessed during loading (before we even get to the main menu) for search tree population
     // Obviously the world is always null at that point, because no world objects exist! However, outside of a world
     // there are no guarantees as to spell metadata order so we just have to give up (and we can't account for discovery)
-    // TODO: Search trees seem to get reloaded when the mappings change so in theory this should work ok, why doesn't it?
     @Overwrite(remap = false)
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, World world, List<String> tooltip, net.minecraft.client.util.ITooltipFlag advanced){
@@ -50,8 +76,6 @@ public abstract class mItemSpellBook extends Item {
 
             Spell spell = Spell.byMetadata(itemstack.getItemDamage());
 
-            // Element colour is not given for undiscovered spells
-            tooltip.add("\u00A77" + spell.getDisplayNameWithFormatting());
             tooltip.add(spell.getTier().getDisplayNameWithFormatting());
             tooltip.add(spell.getElement().getDisplayName());
             tooltip.add(spell.getType().getDisplayName());
@@ -81,14 +105,4 @@ public abstract class mItemSpellBook extends Item {
             }
         }
     }
-
-    //TODO: generate tooltip display
-
-    //TODO: generate tooltip display
-    //TODO: if no properties are generated, right click to generate and drop book
-    //TODO: Color tiers based on
-
-    //TODO: generate nbt based on spell properties and attach to book
-
-    //TODO: craft books together to combine the best properties
 }

@@ -24,6 +24,7 @@ public abstract class mSettings {
 
         for(Spell spell : Spell.getAllSpells()){
             String spell_name = spell.getUnlocalisedName().substring(spell.getUnlocalisedName().indexOf(':') + 1);
+            boolean test = allowedSpells.contains(spell_name);
             spell.setEnabled(allowedSpells.contains(spell_name));
         }
     }

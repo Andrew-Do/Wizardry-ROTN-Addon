@@ -70,12 +70,12 @@ public abstract class mItemWand extends Item implements ISpellCastingItem, IWand
         // Alternate right-click function; overrides spell casting.
         if(this.selectMinionTarget(player, world)) return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 
-        if (player.isSneaking())
-        {
-            //TODO: Open Test GUI Here
-            player.openGui(WizardryROTN.instance, GuiHandler.OPEN_GUI_WAND_ID, world, hand == EnumHand.OFF_HAND ? 1 : 0, 0, 0);
-            return new ActionResult(EnumActionResult.SUCCESS, stack);
-        }
+//        if (player.isSneaking())
+//        {
+//            //TODO: Open Test GUI Here
+//            player.openGui(WizardryROTN.instance, GuiHandler.OPEN_GUI_WAND_ID, world, hand == EnumHand.OFF_HAND ? 1 : 0, 0, 0);
+//            return new ActionResult(EnumActionResult.SUCCESS, stack);
+//        }
 
         Spell spell = WandHelper.getCurrentSpell(stack);
         SpellModifiers modifiers = this.calculateModifiers(stack, player, spell);
@@ -106,11 +106,6 @@ public abstract class mItemWand extends Item implements ISpellCastingItem, IWand
 
     @Shadow private boolean selectMinionTarget(EntityPlayer player, World world) {throw new AbstractMethodError("Shadow");}
     @Shadow public abstract SpellModifiers calculateModifiers(ItemStack stack, EntityPlayer player, Spell spell);
-
-    //@Inject(at = @At("TAIL"), method = "<init>()V")
-    //private void init(Tier tier, Element element, CallbackInfo info){
-    //
-    //}
 
 
     //Casting Logic

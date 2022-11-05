@@ -4,9 +4,7 @@ import com.a.wizardry2.WizardryROTN;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.client.DrawingUtils;
 import electroblob.wizardry.constants.Element;
-import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.data.SpellGlyphData;
-import electroblob.wizardry.inventory.ContainerArcaneWorkbench;
 import electroblob.wizardry.item.*;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.WandHelper;
@@ -69,17 +67,8 @@ public class GuiWand extends GuiContainer {
         this.drawDefaultBackground();
         GlStateManager.color(1, 1, 1, 1); // Just in case
 
-
-        Slot centreSlot = this.inventorySlots.getSlot(ContainerArcaneWorkbench.CENTRE_SLOT);
-
-        // Update the GUI dimensions based on whether there is a wand present and whether there are bookshelves
-        xSize = MAIN_GUI_WIDTH;
+        xSize = MAIN_GUI_WIDTH + TOOLTIP_WIDTH;
         guiLeft = (this.width - MAIN_GUI_WIDTH) / 2;
-
-        if(centreSlot.getHasStack() && centreSlot.getStack().getItem() instanceof IWorkbenchItem
-                && ((IWorkbenchItem)centreSlot.getStack().getItem()).showTooltip(centreSlot.getStack())){
-            xSize += TOOLTIP_WIDTH;
-        }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
@@ -121,7 +110,7 @@ public class GuiWand extends GuiContainer {
         float opacity = (animationTimer + partialTicks)/ANIMATION_DURATION;
 
         // Spell book slots (always use guiLeft and guiTop here regardless of bookshelf UI visibility
-        for(int i = 0; i < ContainerArcaneWorkbench.CRYSTAL_SLOT; i++){
+        for(int i = 0; i < ContainerWand.UPGRADE_SLOT; i++){
 
             Slot slot = this.inventorySlots.getSlot(i);
 
@@ -145,9 +134,9 @@ public class GuiWand extends GuiContainer {
             }
         }
 
-        // Crystal + upgrade slot animations
+        //upgrade slot animations
         if(animationTimer > 0){
-            Slot upgrades = this.inventorySlots.getSlot(ContainerArcaneWorkbench.UPGRADE_SLOT);
+            Slot upgrades = this.inventorySlots.getSlot(ContainerWand.UPGRADE_SLOT);
 
             if(upgrades.getHasStack()){
 
